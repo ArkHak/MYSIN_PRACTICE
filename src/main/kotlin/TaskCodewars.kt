@@ -1,5 +1,7 @@
 fun main() {
-
+    val a = intArrayOf(121, 144, 19, 161, 19, 144, 19, 11)
+    val b = intArrayOf(11 * 11, 121 * 121, 144 * 144, 19 * 19, 161 * 161, 19 * 19, 144 * 144, 19 * 19)
+    println(comp(a, b))
 }
 
 //Credit Card Mask
@@ -70,4 +72,66 @@ private fun validateUsername(username: String): Boolean {
     return username.matches(Regex(regex))
 }
 
+//Even or Odd
+private fun evenOrOdd(number: Int): String {
+    return if (number % 2 == 0) "Even" else "Odd"
+}
+
+//Return Negative
+private fun makeNegative(x: Int): Int = if (x > 0) -x else x
+
+//Leap Years
+private fun isLeapYear(year: Int): Boolean {
+    if (year % 4 == 0) {
+        if (year % 400 == 0) return true
+        if (year % 100 == 0) return false
+        return true
+    }
+    return false
+
+    //todo Лучший вариант проверки года на leap
+    //return java.time.Year.of(year).isLeap
+}
+
+//Plus - minus - plus - plus - ... - Count
+private fun catchSignChange(arr: Array<Int>): Int {
+    var countChangeSing = 0
+    if (arr.isNotEmpty()) {
+        var lastSingBoolean = arr.first() >= 0
+        for (i in arr) {
+            if ((i >= 0) != lastSingBoolean) {
+                countChangeSing++
+                lastSingBoolean = !lastSingBoolean
+            }
+        }
+    }
+    return countChangeSing
+
+    //todo Лучший вариант
+    //fun catchSignChange(arr: Array<Int>): Int = arr.map { it < 0 }
+    //                                                .zipWithNext { a, b -> a != b }
+    //                                                .count { it }
+}
+
+//Target Date
+private fun dateNbDays(a0: Double, a: Double, p: Double): String {
+    return ""
+}
+
+//Are they the "same"?
+fun comp(a: IntArray?, b: IntArray?): Boolean {
+    if (a?.size != null && b?.size != null && a.size == b.size) {
+        a.sort()
+        b.sort()
+        for (i in a.indices) {
+            if (a[i] * a[i] != b[i]) return false
+        }
+        return true
+    }
+    return false
+
+    //todo лучший вариант
+    // if (a == null || b == null) return false
+    // return a.map { it * it }.sorted() == b.sorted()
+}
 
